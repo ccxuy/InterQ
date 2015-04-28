@@ -84,10 +84,6 @@
   font-weight: normal;
   color: #fff;
 }
-.ui.vertical.menu .dropdown.item div.menu{
-  display: float;
-  z-index: 100;
-}
 .ui.inverted.vertical.menu.visible .item .menu .active.item{
   color: #009fda;
 }
@@ -96,4 +92,21 @@
   padding-top: 0.5em;
   border-color: transparent;
   background-color: rgba(255, 255, 255, 0.9);
+}
+.ui.menu .item.dropdown{
+  padding-left: 0;
+  padding-right: 0;
+}
+.ui.vertical.menu .dropdown.item div.menu{
+  position: initial;
+  margin-top: 10px;
+}
+.menu-width-padding {
+  padding-right: 0.95em;
+  padding-left: 0.95em;
+}
+.ui.vertical.menu .item .menu-width-padding > i.icon {
+  width: 1.18em;
+  float: right;
+  margin: 0em 0em 0em 0.5em;
 }

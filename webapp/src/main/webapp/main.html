@@ -7,20 +7,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <!-- Site Properities -->
-    <title>Feed Example - Semantic</title>
+    <title>InterQ Web App</title>
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Open+Sans:300italic,400,300,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="./semantic/semantic.css">
+    <script src="js/angular-1.3.js"></script>
     <script src="js/headroom.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.js"></script>
-    <script src="./semantic//semantic.js"></script>
+    <script src="semantic/semantic.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controller/QuestionMgntController.js"></script>
     <link rel="stylesheet" type="text/css" href="feed.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <!-- <link rel="stylesheet" type="text/css" href="css/main.css"> -->
     <script src="feed.js"></script>
 </head>
 
-<body>
+<body ng-app="InterqApp">
     <header id="header" style="display: block" class="header header--fixed hide-from-print slide headroom--top ui inverted main menu" role="banner">
         <div class="container">
             <nav id="nav" class="nav-wrapper" role="navigation">
@@ -30,7 +33,7 @@
             </a>
         </div>
     </header>
-    <div id="feed">
+    <div id="feed" ng-controller="QuestionMgntController as qm">
         <div class="ui large inverted vertical sidebar menu">
             <a class="item"><i class="tasks icon"></i>
               Dashboard <!-- <span class="ui label">0</span> -->
@@ -38,6 +41,14 @@
             <a class="item"><i class="fa fa-space-shuttle icon"></i>
               Generate Exam <!-- <span class="ui label">0</span> -->
             </a>
+            <div class="ui dropdown item">
+                <div class="menu-width-padding"><i class="add icon"></i> New</div>
+                <div class="menu">
+                    <a class="item"><i class="rss icon"></i> Question</a>
+                    <a class="item"><i class="folder icon"></i> Group</a>
+                    <a class="item"><i class="tag icon"></i> Tag</a>
+                </div>
+            </div>
             <div class="item">
               <div class="ui transparent icon input">
                 <input type="text" style="color:grey" placeholder="Search question...">
@@ -47,25 +58,14 @@
             <div class="accordion item">
                 <a>Category</a>
                 <div class="menu">
-                    <a class="active item">
-                      Best of the best <span class="ui label">213</span>
-                    </a>
-                    <a class="item">
-                      Cat 2 <span class="ui label">20</span>
+                    <a class="item" ng-repeat="c in qm.categories" ng-click="qm.catTitle(c.name)">
+                      {{c.name}} <span class="ui label">{{c.count}}</span>
                     </a>
                 </div>
             </div>
             <a class="item">
                 <i class="book icon"></i> Logs
             </a>
-            <div class="ui dropdown item">
-                <i class="add icon"></i> New
-                <div class="menu">
-                    <a class="item"><i class="rss icon"></i> Question</a>
-                    <a class="item"><i class="folder icon"></i> Group</a>
-                    <a class="item"><i class="tag icon"></i> Tag</a>
-                </div>
-            </div>
             <a class="item"><i class="fa fa-sign-out icon"></i>
               Sign out
             </a>
@@ -74,6 +74,10 @@
             <div class="left column">
                 <div class="ui left floated launch icon button">
                     <i class="sidebar icon"></i>
+                </div>
+                <div class="ui left floated large label">
+                  {{qm.curCategory}}
+                  <i class="delete icon"></i>
                 </div>
                 <div class="ui right floated launch primary button">
                     <i class="add icon"></i> Add Question
@@ -178,7 +182,7 @@
                 </div>
             </div>
             <div class="right column">
-                <h1 class="ui header">PHP is the best programming language in the world</h1>
+                <h1 class="ui header">{{questionTitle}}</h1>
                 <a class="ui label">Active</a>
                 <a class="ui label">PHP</a>
                 <div class="ui divider"></div>
