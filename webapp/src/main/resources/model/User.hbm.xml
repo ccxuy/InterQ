@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 25, 2014 10:23:02 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="model.User" table="INTERQ_USER">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="increment">
+            </generator>
+        </id>
+        <property name="username" type="java.lang.String">
+            <column name="USERNAME" />
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="PASSWORD" />
+        </property>
+        <property name="role" type="int">
+            <column name="ROLE" />
+        </property>
+        <property name="disabled" type="boolean" >
+            <column name="DISABLED" />
+        </property>
+    </class>
+</hibernate-mapping>
