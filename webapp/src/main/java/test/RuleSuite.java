@@ -17,7 +17,7 @@ import util.HibernateUtil;
 
 @RunWith( Suite.class )
 @Suite.SuiteClasses( {
-        TestStorage.class
+        TestUserDAO.class
         /* , Add more test classes here separated by commas*/
 } )
 public class RuleSuite{
