@@ -43,7 +43,7 @@
   max-width: 600px;
 }
 #feed .left.column .menu {
-  margin-top: 5rem;
+  margin-top: 2rem;
 }
 
 #feed .right.column {
@@ -109,4 +109,8 @@
   width: 1.18em;
   float: right;
   margin: 0em 0em 0em 0.5em;
+}
+.menu .menu .ui.input input{
+  border-radius: 5em 5em 5em 5em;
+  padding-left: 0.8em!important;
 }

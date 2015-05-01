@@ -8,6 +8,7 @@ package model;
 public class Category {
 	int id;
 	String name;
+	int count;
 
 	/**
 	 * @return the id
@@ -37,5 +38,19 @@ public class Category {
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	/**
+	 * @return the count
+	 */
+	public int getCount() {
+		return count;
+	}
+
+	/**
+	 * @param count the count to set
+	 */
+	public void setCount(int count) {
+		this.count = count;
 	}
 }

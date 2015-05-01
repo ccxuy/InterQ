@@ -56,8 +56,32 @@
               </div>
             </div>
             <div class="accordion item">
-                <a>Category</a>
+                <a ng-click="qm.showCategory('all')">Category</a>
+                <i class="add icon" ng-click="qm.addCategory()"></i>
                 <div class="menu">
+                    <!-- <div ng-show="editorEnabled">
+                      <input ng-model="title">
+                      <a href="#" ng-click="editorEnabled=!editorEnabled">Done editing?</a>
+                    </div> -->
+
+                    <div class="ui input" ng-show="editorEnabled">
+                      <div class="clear"></div>
+                      <form ng-submit="myFunc()">
+                        <div class="item">
+                          <div class="ui transparent mini icon input">
+                            <input type="text" style="color:grey" placeholder="Enter category name." ng-model="newCategoryName" autocomplete="off">
+                          </div>
+                        </div>
+                        <!-- <div class="item">
+                          <div class="ui buttons">
+                            <div class="ui positive button">Save</div>
+                            <div class="or"></div>
+                            <div class="ui button">Cancel</div>
+                        </div>
+                        </div> -->
+                      </form>
+                    </div>
+
                     <a class="item" ng-repeat="c in qm.categories" ng-click="qm.catTitle(c.name)">
                       {{c.name}} <span class="ui label">{{c.count}}</span>
                     </a>
@@ -72,15 +96,16 @@
         </div>
         <div class="ui divided two column padded grid">
             <div class="left column">
-                <div class="ui left floated launch icon button">
+                <div class="ui left launch icon button">
                     <i class="sidebar icon"></i>
-                </div>
-                <div class="ui left floated large label">
-                  {{qm.curCategory}}
-                  <i class="delete icon"></i>
                 </div>
                 <div class="ui right floated launch primary button">
                     <i class="add icon"></i> Add Question
+                </div>
+                <div class="ui divider"></div>
+                <div class="ui left floated large label">
+                  {{qm.curCategory}}
+                  <i class="delete icon"></i>
                 </div>
                 <div class="ui secondary pointing filter menu">
                     <a class="active red item" data-tab="unread">Active</a>
@@ -182,7 +207,7 @@
                 </div>
             </div>
             <div class="right column">
-                <h1 class="ui header">{{questionTitle}}</h1>
+                <h1 class="ui header">{{qm.questionTitle}}</h1>
                 <a class="ui label">Active</a>
                 <a class="ui label">PHP</a>
                 <div class="ui divider"></div>
@@ -199,7 +224,7 @@
     </div>
     <script>
     (function() {
-        $("#header").headroom();
+        // $("#header").headroom();
         // var header = document.querySelector("#header");
         // if (window.location.hash) {
         //     header.classList.add("slide--up");

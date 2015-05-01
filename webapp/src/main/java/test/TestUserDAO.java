@@ -4,7 +4,7 @@
 package test;
 
 import model.User;
-import model.dal.UserDAO;
+import model.dal.ModelDAO;
 
 import org.junit.Test;
 
@@ -20,7 +20,7 @@ public class TestUserDAO {
 	public void testWrite() {
 		// Just a write, verify id set
 		User user = new User();
-		UserDAO<User> userDao = new UserDAO<User>(user);
+		ModelDAO<User> userDao = new ModelDAO<User>(user);
 		userDao.beginTransaction();
 		user.setRole("admin");
 		assertEquals(user.getId(), 0);
@@ -34,7 +34,7 @@ public class TestUserDAO {
 
 		// Write
 		User user = new User();
-		UserDAO<User> userDao = new UserDAO<User>(user);
+		ModelDAO<User> userDao = new ModelDAO<User>(user);
 		userDao.beginTransaction();
 		user.setRole("exam user");
 		assertEquals(user.getId(), 0);
@@ -46,7 +46,7 @@ public class TestUserDAO {
 		// Read and verify
 		User user2 = new User();
 		assertTrue(user.isRoleExamUser());
-		userDao = new UserDAO<User>(user2);
+		userDao = new ModelDAO<User>(user2);
 		userDao.beginTransaction();
 		user2 = userDao.getById(id);
 		assertTrue(user2.isRoleExamUser());
@@ -61,7 +61,7 @@ public class TestUserDAO {
 
 		// Insert an user
 		User user = new User();
-		UserDAO<User> userDao = new UserDAO<User>(user);
+		ModelDAO<User> userDao = new ModelDAO<User>(user);
 		userDao.beginTransaction();
 		user.setRole(overRideRole);
 		assertEquals(user.getId(), 0);
@@ -92,7 +92,7 @@ public class TestUserDAO {
 	public void testDelete() {
 
 		User user = new User();
-		UserDAO<User> userDao = new UserDAO<User>(user);
+		ModelDAO<User> userDao = new ModelDAO<User>(user);
 
 		// Write
 		userDao.beginTransaction();
