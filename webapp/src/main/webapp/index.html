@@ -17,6 +17,7 @@
     <script src="semantic/semantic.js"></script>
     <script src="js/app.js"></script>
     <script src="js/controller/QuestionMgntController.js"></script>
+    <script src="js/module/key-bind.js"></script>
     <link rel="stylesheet" type="text/css" href="feed.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <!-- <link rel="stylesheet" type="text/css" href="css/main.css"> -->
@@ -64,14 +65,12 @@
                       <a href="#" ng-click="editorEnabled=!editorEnabled">Done editing?</a>
                     </div> -->
 
-                    <div class="ui input" ng-show="editorEnabled">
+                    <a class="item" ng-show="editorEnabled">
                       <div class="clear"></div>
-                      <form ng-submit="myFunc()">
-                        <div class="item">
+                      <form ng-submit="qm.submitNewCategory()">
                           <div class="ui transparent mini icon input">
-                            <input type="text" style="color:grey" placeholder="Enter category name." ng-model="newCategoryName" autocomplete="off">
+                            <input type="text" style="color:grey" placeholder="Enter category name." ng-model="addCategoryName" autocomplete="off">
                           </div>
-                        </div>
                         <!-- <div class="item">
                           <div class="ui buttons">
                             <div class="ui positive button">Save</div>
@@ -79,10 +78,11 @@
                             <div class="ui button">Cancel</div>
                         </div>
                         </div> -->
+                        <div class="ui mini button" ng-click="qm.addCategoryCancel()">Cancel</div>
                       </form>
-                    </div>
+                    </a>
 
-                    <a class="item" ng-repeat="c in qm.categories" ng-click="qm.catTitle(c.name)">
+                    <a class="item" ng-repeat="c in qm.categories" ng-click="qm.catTitle(c)">
                       {{c.name}} <span class="ui label">{{c.count}}</span>
                     </a>
                 </div>
@@ -99,13 +99,15 @@
                 <div class="ui left launch icon button">
                     <i class="sidebar icon"></i>
                 </div>
-                <div class="ui right floated launch primary button">
-                    <i class="add icon"></i> Add Question
+                <div class="ui left floated large label">
+                  {{qm.curCategory.name}}
+                </div>
+                <div class="ui right floated mini red button" ng-click="qm.submitDeleteCategory()">
+                    <i class="delete icon"></i> Delete Category
                 </div>
                 <div class="ui divider"></div>
-                <div class="ui left floated large label">
-                  {{qm.curCategory}}
-                  <i class="delete icon"></i>
+                <div class="ui right floated launch primary button">
+                    <i class="add icon"></i> Add Question
                 </div>
                 <div class="ui secondary pointing filter menu">
                     <a class="active red item" data-tab="unread">Active</a>

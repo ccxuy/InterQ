@@ -10,6 +10,34 @@ public class Category {
 	String name;
 	int count;
 
+	public Category() {
+		super();
+	}
+
+	/**
+	 * For retrieve data object use.
+	 * @param id
+	 */
+	public Category(int id) {
+		super();
+		this.id = id;
+	}
+
+	/**
+	 * For retrieve data object use.
+	 * @param id
+	 */
+	public Category(String id) {
+		super();
+		this.id = Integer.parseInt(id);
+	}
+
+	public Category(String name, int count) {
+		super();
+		this.name = name;
+		this.count = count;
+	}
+
 	/**
 	 * @return the id
 	 */
@@ -52,5 +80,11 @@ public class Category {
 	 */
 	public void setCount(int count) {
 		this.count = count;
+	}
+
+	@Override
+	public String toString() {
+		return "Category [id=" + id + ", name=" + name + ", count=" + count
+				+ "]";
 	}
 }

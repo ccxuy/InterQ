@@ -22,12 +22,14 @@ import model.dal.ModelDAO;
 @Path("/category")
 public class QuestionCategoryResource {
 
-    @GET @Path("/{categoryid}")
+    @GET @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Category getCategory(@PathParam("categoryid") String categoryid) {
+    public Category getCategory(@PathParam("id") int categoryid) {
     	Category category = new Category();
-    	category.setId(1);
-    	category.setName("hi a");
+    	ModelDAO<Category> categoryDao = new ModelDAO<Category>(category);
+    	categoryDao.beginTransaction();
+    	category = categoryDao.getById(categoryid);
+    	categoryDao.commit();
         return category;
     }
     
@@ -47,25 +49,38 @@ public class QuestionCategoryResource {
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createCategory(@FormParam(value = "name") String name) {
-    	Category category = new Category();
-    	category.setName(name);
-    	
-    	Gson gson = new Gson();
-        return Response.status(200).entity(gson.toJson(category)).build();
+    public Category createCategory(Category category) {
+    	ModelDAO<Category> categoryDao = new ModelDAO<Category>(category);
+    	categoryDao.beginTransaction();
+    	categoryDao.insert(category);
+    	categoryDao.commit();
+
+    	return category;
+//    	Gson gson = new Gson();
+//        return Response.status(200).entity(gson.toJson(category)).build();
     }
     
-    @POST @Path("/{categoryid}")
+    @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public String updateCategory() {
-        return "Hello!";
+    public Category updateCategory(Category category) {
+    	ModelDAO<Category> categoryDao = new ModelDAO<Category>(category);
+    	categoryDao.beginTransaction();
+    	categoryDao.update(category);
+    	categoryDao.commit();
+    	return category;
     }
     
-    @DELETE @Path("/{categoryid}")
+    @DELETE @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String deleteCategory() {
-        return "Hello!";
+    public Response deleteCategory(@PathParam("id") String id) {
+    	Category category = new Category(id);
+    	ModelDAO<Category> categoryDao = new ModelDAO<Category>(category);
+    	categoryDao.beginTransaction();
+    	categoryDao.delete(category);
+    	categoryDao.commit();
+    	Gson gson = new Gson();
+        return Response.status(200).entity(gson.toJson("success")).build();
     }
 
 }
