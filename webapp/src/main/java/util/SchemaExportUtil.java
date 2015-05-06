@@ -15,6 +15,9 @@ import org.hibernate.tool.hbm2ddl.SchemaExport;
  */
 public class SchemaExportUtil {
 	
+	/**
+	 * This method aims on exporting the user schema.
+	 */
 	public static void exportUserSchema(){
 
 		AnnotationConfiguration configuration = new AnnotationConfiguration();

@@ -22,6 +22,11 @@ app.controller('QuestionMgntController', ['$scope', '$http', function($scope, $h
     $scope.addCategoryName = null;
   };
 
+  this.editCategoryName = function editCategoryName(category) {
+    category.nameEditable = true;
+  };
+
+  // Submit the category data of category name to server.
   this.submitNewCategory = function submitNewCategory() {
     console.log("submitNewCategory:"+$scope.addCategoryName);
     $http.put('./api/category/', {name:$scope.addCategoryName}).
@@ -35,6 +40,21 @@ app.controller('QuestionMgntController', ['$scope', '$http', function($scope, $h
       });
   };
 
+  // Update the current category.
+  this.submitEditCategoryName = function submitEditCategoryName(category) {
+    console.log("submitEditCategoryName:"+self.curCategory);
+    category.nameEditable = false;
+    $http.post('./api/category/', self.curCategory).
+      success(function(data, status, headers, config) {
+        self.loadCategory();
+      }).
+      error(function(data, status, headers, config) {
+        alert('Unable to update category name.');
+        // log error
+      });
+  };
+
+  // Delete the current category.
   this.submitDeleteCategory = function submitDeleteCategory() {
     console.log("submitDeleteCategory:"+self.curCategory);
     $http.delete('./api/category/'+self.curCategory.id).
@@ -51,6 +71,7 @@ app.controller('QuestionMgntController', ['$scope', '$http', function($scope, $h
     alert("showCategory: "+name);
   };
 
+  // Load category list from sever.
   this.loadCategory = function loadCategory() {
     $http.get('./api/category/all/').
       success(function(data, status, headers, config) {

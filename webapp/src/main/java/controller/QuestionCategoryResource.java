@@ -22,6 +22,11 @@ import model.dal.ModelDAO;
 @Path("/category")
 public class QuestionCategoryResource {
 
+    /**
+     * For getting category by id
+     * @param categoryid
+     * @return
+     */
     @GET @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Category getCategory(@PathParam("id") int categoryid) {
@@ -33,6 +38,10 @@ public class QuestionCategoryResource {
         return category;
     }
     
+    /**
+     * For getting all categories
+     * @return
+     */
     @GET @Path("/all/")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllCategories() {
@@ -46,6 +55,11 @@ public class QuestionCategoryResource {
         return Response.status(200).entity(gson.toJson(cList)).build();
     }
     
+    /**
+     * Create a category via a given category.
+     * @param category
+     * @return
+     */
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -60,6 +74,11 @@ public class QuestionCategoryResource {
 //        return Response.status(200).entity(gson.toJson(category)).build();
     }
     
+    /**
+     * Update a category via a given category.
+     * @param category
+     * @return
+     */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -71,6 +90,11 @@ public class QuestionCategoryResource {
     	return category;
     }
     
+    /**
+     * Delete a category with given id.
+     * @param id
+     * @return
+     */
     @DELETE @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response deleteCategory(@PathParam("id") String id) {
