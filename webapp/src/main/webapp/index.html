@@ -102,7 +102,7 @@
                 <div class="ui left floated large label" ng-hide="qm.curCategory.nameEditable" ng-dblclick="qm.editCategoryName(qm.curCategory)">
                   {{qm.curCategory.name}}
                 </div>
-                <input ng-show="qm.curCategory.nameEditable" ng-model="qm.curCategory.name" ng-blur="qm.submitEditCategoryName(qm.curCategory)" autofocus />
+                <input class="ui transparent input" ng-show="qm.curCategory.nameEditable" ng-model="qm.curCategory.name" ng-blur="qm.submitEditCategoryName(qm.curCategory)" key-bind="{ enter: 'qm.submitEditCategoryName(qm.curCategory)'}" autofocus />
                 <div class="ui right floated mini red button" ng-click="qm.submitDeleteCategory()">
                     <i class="delete icon"></i> Delete Category
                 </div>

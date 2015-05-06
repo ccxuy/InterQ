@@ -33,6 +33,7 @@ app.controller('QuestionMgntController', ['$scope', '$http', function($scope, $h
       success(function(data, status, headers, config) {
         // self.categories = data;
         self.loadCategory();
+        $scope.addCategoryName = null;
       }).
       error(function(data, status, headers, config) {
         self.categories.push({'name':'Unable to create new category.', 'count':0});
