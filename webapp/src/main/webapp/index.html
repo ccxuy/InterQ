@@ -17,6 +17,7 @@
     <script src="semantic/semantic.js"></script>
     <script src="js/app.js"></script>
     <script src="js/controller/QuestionMgntController.js"></script>
+    <script src="js/controller/UserMgntController.js"></script>
     <script src="js/module/key-bind.js"></script>
     <link rel="stylesheet" type="text/css" href="feed.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -25,12 +26,15 @@
 </head>
 
 <body ng-app="InterqApp">
-    <header id="header" style="display: block" class="header header--fixed hide-from-print slide headroom--top ui inverted main menu" role="banner">
+    <header id="header" style="display: block" class="header header--fixed hide-from-print slide headroom--top ui inverted main menu" role="banner"  ng-controller="UserMgntController as um">
         <div class="container">
             <nav id="nav" class="nav-wrapper" role="navigation">
             </nav>
             <a href="" class="title item brand header__link">
                 <b class="brand__forename">Inter</b><b class="brand__surname">Q</b>
+            </a>
+            <a class="title item brand floated right user icon"data-content="Welcome, {{um.loginUserName}}">
+                <b class="icon user" ><i class="alternate user icon"></i></b>
             </a>
         </div>
     </header>
@@ -188,12 +192,12 @@
                 </div>
                 <div class="ui tab" data-tab="all">
                     <div class="ui very relaxed divided link list">
-                        <a class="item">
+                        <a class="item" ng-repeat="q in qm.curCategoryQuestions">
                             <div class="left floated ui star rating">
                                 <i class="link icon"></i>
                             </div>
-                            <div class="right floated date">Mar 14, 2015</div>
-                            <div class="description">The best programming language in the world is LISP</div>
+                            <div class="right floated date">{{q.date}}</div>
+                            <div class="description">{{q.name}}</div>
                         </a>
                     </div>
                 </div>

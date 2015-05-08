@@ -2,6 +2,14 @@ app.controller('QuestionMgntController', ['$scope', '$http', function($scope, $h
   var self = this; 
   this.questionTitle = 'PHP is the best programming language in the world!!'; 
   this.categories = [{'name':'Loading...', 'count':0}];
+  this.curCategoryQuestions = [{'name':'Ruby is the best programming language in the world', 'date':'May 14, 2015'},
+    {'name':'Scala is the best programming language in the world', 'date':'May 14, 2015'},
+    {'name':'C is the best programming language in the world', 'date':'May 14, 2015'},
+    {'name':'Python is the best programming language in the world', 'date':'May 14, 2015'},
+    {'name':'PHP is the best programming language in the world', 'date':'May 14, 2015'},
+    {'name':'Lua is the best programming language in the world', 'date':'May 14, 2015'},
+    {'name':'Haskell is the best programming language in the world', 'date':'May 14, 2015'}
+  ];
 
   this.curCategory = this.categories[0];
 
@@ -36,7 +44,7 @@ app.controller('QuestionMgntController', ['$scope', '$http', function($scope, $h
         $scope.addCategoryName = null;
       }).
       error(function(data, status, headers, config) {
-        self.categories.push({'name':'Unable to create new category.', 'count':0});
+        self.categories.push({'name':'<Category name not acceptted by server>.', 'count':0});
         // log error
       });
   };
